@@ -1,0 +1,27 @@
+.project-info-container {
+	table {
+		th {
+			text-align: right;
+			span::before {
+			    width: 10px;
+			    height: 10px;
+			    display: inline-block;
+			    margin-right: 10px;
+			    content: '✓';
+			}
+		}
+		td {
+			ul {
+				margin-left: 15px;
+				li {
+		    		display: list-item;
+		    		list-style-type: disc;
+		    	}
+		    	li::before {
+	    			content: '';
+	    		}
+			}
+		}
+		width: 100%;
+	}
+}

@@ -1,0 +1,40 @@
+.profile-wrapper {
+	h1 {
+		width: auto;
+		text-align: center;
+		display: block;
+	}
+}
+
+@mixin span-as-block-elem ($align) {
+	text-align: $align;
+	display: block;
+	width: auto;
+	clear: both;
+}
+
+.address-container {
+	span {
+		@include span-as-block-elem(right);		
+	}
+}
+
+.contact-me-container {
+    margin-top: 10px;
+	.email-container {
+		span {
+			&:nth-child(2) {
+				color: red;
+			}
+			@include span-as-block-elem(left);
+		}
+	}
+
+	.mobile-container {
+		position: relative;
+		top: -35px;
+		span {
+			@include span-as-block-elem(right);
+		}
+	}
+}

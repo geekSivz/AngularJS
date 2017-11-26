@@ -15,8 +15,4 @@ export class PersonalInfoComponent implements OnInit {
 
   ngOnInit() {
   }
-  
-  sendMeHome() {
-    this.router.navigate(['']);
-  }
 }
