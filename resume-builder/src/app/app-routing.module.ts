@@ -11,10 +11,6 @@ import { PrintComponent } from './print/print.component';  // Add this
 
 const routes: Routes = [
   {
-    path: '',
-    component: AppComponent
-  },
-  {
     path: 'print',
     component: PrintComponent
   },
@@ -41,6 +37,10 @@ const routes: Routes = [
   {
     path: 'declaration',
     component: DeclarationInfoComponent
+  },
+  { 
+    path: '**', 
+    component: PrintComponent 
   }
 ];
 
