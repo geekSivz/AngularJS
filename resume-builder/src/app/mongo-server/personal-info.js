@@ -1,4 +1,7 @@
 var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/todoAppTest');
+
+
 var Schema = mongoose.Schema;
 var ProductSchema = new Schema({
 	title : String,
@@ -6,4 +9,4 @@ var ProductSchema = new Schema({
 	instock : Boolean,
 	photo : String,
 });
-module.exports = mongoose.model('Product', ProductSchema);
+module.exports = mongoose.model('personal_info', ProductSchema);

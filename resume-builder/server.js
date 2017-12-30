@@ -1,38 +1,41 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var cors = require('cors');
-var app = express();
-var mongoose = require('mongoose');
-var product = require('/src/app/mongo-server/product');
-app.use(bodyParser.urlencoded({
-	extended : true
-}));
+// Get dependencies
+const express = require('express');
+const path = require('path');
+const http = require('http');
+const bodyParser = require('body-parser');
+
+// Get our API routes
+const api = require('./server/routes/api');
+
+const app = express();
+
+// Parsers for POST data
 app.use(bodyParser.json());
-var port = process.env.PORT || 8090;
-var router = express.Router();
-app.use(cors());
-app.use('/api', router);
-app.listen(port);
-console.log('REST API is runnning at ' + port);
-mongoose.connect('mongodb://localhost:27017/products');
-router.use(function(req, res, next) {
-	// do logging   
-	// do authentication   
-	console.log('Logging of request will be done here');
-	next(); // make sure we go to the next routes and don't stop here  
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// Point static path to dist
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// Set our api routes
+app.use('/api', api);
+
+// Catch all other routes and return the index file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
-router.route('/products').post(function(req, res) {
-	var p = new product();
-	p.title = req.body.title;
-	p.price = req.body.price;
-	p.instock = req.body.instock;
-	p.photo = req.body.photo;
-	p.save(function(err) {
-		if (err) {
-			res.send(err);
-		}
-		res.send({
-			message : 'Product Created !'
-		})
-	})
-});
+
+/**
+ * Get port from environment and store in Express.
+ */
+const port = process.env.PORT || '3000';
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+const server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+server.listen(port, () => console.log(`API running on localhost:${port}`));

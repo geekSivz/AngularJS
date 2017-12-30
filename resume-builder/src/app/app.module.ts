@@ -11,6 +11,7 @@ import { WorkInfoComponent } from './work-info/work-info.component';
 import { ProjectInfoComponent } from './project-info/project-info.component';
 import { DeclarationInfoComponent } from './declaration-info/declaration-info.component';
 import { PrintComponent } from './print/print.component';
+import { ApiService } from './api.service';
 
 
 @NgModule({
@@ -28,7 +29,7 @@ import { PrintComponent } from './print/print.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
